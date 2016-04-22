@@ -1,0 +1,81 @@
+var Fiber = require('fibers');
+var http = require("http");
+
+"".trim();
+
+Fiber(function () {
+    var httpFiber = Fiber.current;
+    var html = "";
+    var dbt=require("./db.js");
+    http.get("http://www.baidu.com", function (res) {
+        //  var dataFiber = Fiber.current;
+        res.on("data", function (data) {
+            html += data;
+        });
+        res.on("end", function (data) {
+            httpFiber.run();
+        });
+    });
+
+    var fs = require("fs");
+    //var fiber = Fiber.current;//一个断点
+    var files = fs.readdirSync(__dirname + "/__DB__");
+
+    var tasks = new Array();
+    files.forEach(function (file) {
+        if (file.indexOf(".sql") != -1 && file.indexOf(".sql.") == -1) {
+            // allcase[file]=new Object();
+            var lines = fs.readFileSync("__DB__/" + file);
+            tasks=tasks.concat(lines.toString().replace("\n", "").split(";"));
+        }
+
+    });
+
+    tasks.forEach(function(item){
+        console.log("sbc",item)
+        //item[0].trim();
+        if(item !=null)
+            item = item.trim();
+        dbt(item, function (err, res) {
+            console.log(res);
+            if (tasks[tasks.length - 1].trim() == item)
+                fiber_total.run();//最后一个元素
+        });
+    });
+
+
+    Fiber.yield();
+    console.log(html);
+}).run();
+
+//
+//Fiber(function () {
+//    var fiber_total = Fiber.current;//一个断点
+//    var fs = require("fs");
+//    //var fiber = Fiber.current;//一个断点
+//    var files = fs.readdirSync(__dirname + "/__DB__");
+//
+//    var tasks = new Array();
+//    files.forEach(function (file) {
+//        if (file.indexOf(".sql") != -1 && file.indexOf(".sql.") == -1) {
+//            // allcase[file]=new Object();
+//            var lines = fs.readFileSync("__DB__/" + file);
+//            tasks.push(lines.toString().replace("\n", "").split(";"));
+//        }
+//        ;
+//    });
+//
+//    tasks.forEach(function (item) {
+//        item = item.trim();
+//        dbt(item, function (err, res) {
+//            console.log(res);
+//            if (tasks[tasks.length - 1].trim() == item)
+//                fiber_total.run();//最后一个元素
+//        });
+//
+//    });
+//
+//    Fiber.yield();
+//    console.log("数据库操作完成")
+//    console.log("最后的结束");
+//}).run();

@@ -1,0 +1,29 @@
+
+
+/*
+
+var async = require('async');
+var query=require("./db.js");
+    async.series([
+            function(cb) {
+                query("select * from t_user",function(qerr,vals){
+                    console.log("111"+vals);
+
+                });
+               // cb();
+            },
+            function(cb) {
+
+                query("select * from t_user",function(qerr,vals) {
+                    console.log("222" + vals);
+                });
+              //  cb();
+            },
+            function(cb) {
+                query("select * from t_user",function(qerr,vals) {
+                    console.log("333" + vals);
+                });
+            }],
+            function(err, values) {
+
+            });*/

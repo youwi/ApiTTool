@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+	<testsuite name="话题">
+		<testcase   classname="api" name="话题/删除话题/删除话题-成功.js" status="fail" time="0.019">
+                    <failure message="undefinedmessage  删除成功!=删除失败！
+status  1!=0
+" type=""/>
+                    <system-out>CPU3.359375% ,200 OK
+undefined
+ 发送报文:userId=1654&amp;key=67dec5e49694a0414c88d949f5666888&amp;subjectId=2114
+ 期待报文:{&quot;message&quot;:&quot;删除成功&quot;,&quot;status&quot;:&quot;1&quot;}
+ 返回报文:{&quot;message&quot;:&quot;删除失败！&quot;,&quot;status&quot;:&quot;0&quot;}
+
+</system-out>
+		</testcase>
+<sysinfo>{"busy":[3.359375,2.29931640625,2.0166015625],"hostname":"cheng.local","systemtype":"Darwin","release":"14.5.0","uptime":65507,"loadavg":[3.359375,2.29931640625,2.0166015625],"totalmem":8589934592,"freemem":236777472,"cpus":[{"model":"Intel(R) Core(TM) i5-5257U CPU @ 2.70GHz","speed":2700,"times":{"user":2622630,"nice":0,"sys":1989770,"idle":50040170,"irq":0}},{"model":"Intel(R) Core(TM) i5-5257U CPU @ 2.70GHz","speed":2700,"times":{"user":930480,"nice":0,"sys":535280,"idle":53185840,"irq":0}},{"model":"Intel(R) Core(TM) i5-5257U CPU @ 2.70GHz","speed":2700,"times":{"user":2473030,"nice":0,"sys":1521340,"idle":50657240,"irq":0}},{"model":"Intel(R) Core(TM) i5-5257U CPU @ 2.70GHz","speed":2700,"times":{"user":963860,"nice":0,"sys":541860,"idle":53145880,"irq":0}}],"disk":""}</sysinfo>	</testsuite>
+
+</testsuites>
